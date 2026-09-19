@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Administrativo </title>
+    <!-- enlace css -->
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body class="login-body">
+
+    <!-- Tarjeta del Formulario (Contenedor Principal Protegido contra Zoom) -->
+    <div class="login-card">
+        
+        <!-- Encabezado del Panel -->
+        <div class="login-header">
+            <div class="icon-container">
+                <!-- Ícono de Candado Seguro -->
+                <svg class="lock-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://w3.org" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                </svg>
+            </div>
+            <h1 class="login-title">Panel Administrativo</h1>
+            <p class="login-subtitle">Plataforma de Control de Servicio Técnico y Stock</p>
+        </div>
+
+        <!-- Formulario Enlazado -->
+        <form id="loginForm" class="login-form">
+            <!-- Campo de Usuario -->
+            <div class="form-group">
+                <label for="username" class="form-label">Nombre de Usuario</label>
+                <input type="text" id="username" required autocomplete="off" class="form-input" placeholder="ej: patriciarodriguez-1989">
+            </div>
+
+            <!-- Campo de Contraseña -->
+            <div class="form-group">
+                <label for="password" class="form-label">Contraseña Privada</label>
+                <input type="password" id="password" required class="form-input" placeholder="••••••••">
+            </div>
+
+            <!-- ESTADO 1 (Humane Check): Contenedor de "Cargando..." oculto por defecto -->
+            <div id="loadingState" class="state-container loading-state hidden">
+                <div class="spinner"></div>
+                <span>Validando identidad en el servidor backend...</span>
+            </div>
+
+            <!-- ESTADO 2 (Humane Check): Bloque de Error oculto por defecto -->
+            <div id="errorState" class="state-container error-state hidden">
+                <!-- Espacio controlado para inyección JavaScript de Dennis -->
+            </div>
+
+            <!-- Botón de Acción Principal -->
+            <button type="submit" class="btn-submit">
+                Ingresar al Sistema
+            </button>
+        </form>
+    </div>
+
+    <!-- Enlace al archivo lógico de Dennis -->
+    <script src="login.js"></script>
+</body>
+</html>
