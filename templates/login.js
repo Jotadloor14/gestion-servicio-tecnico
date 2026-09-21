@@ -4,7 +4,6 @@
  * Desarrollado y Acoplado por: Patricia Rodríguez (@patriciarodriguez-1989)
  */
 
-
 document.addEventListener("DOMContentLoaded", () => {
     // 1. Captura de los elementos del DOM usando los ID definidos por Patricia
     const formulario = document.getElementById("loginForm");
