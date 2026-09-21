@@ -1,8 +1,9 @@
 /**
- * Alquimia Team - TecnoGest Frontend Logic
- * Desarrollado por: Dennis Minchala (@Alexander24mm)
- * Hito 1: Primera Rebanada Vertical - Control de Autenticación Asíncrona
+ * Alquimia Team - Control de Servicio Técnico y Stock
+ * Frontend Logic & Login Validation Flow
+ * Desarrollado y Acoplado por: Patricia Rodríguez (@patriciarodriguez-1989)
  */
+
 
 document.addEventListener("DOMContentLoaded", () => {
     // 1. Captura de los elementos del DOM usando los ID definidos por Patricia
