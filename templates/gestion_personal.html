@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GESTIÓN DE PERSONAL | Sistema Real</title>
+    <!-- Ruta absoluta local directa para que Chrome no te bloquee el diseño -->
+    <link rel="stylesheet" href="C:/Users/patri/Documents/proyectos/gestion-servicio-tecnico/css/gestion_personal.css">
+</head>
+<body>
+
+    <!-- 1. SIDEBAR IZQUIERDO -->
+    <aside>
+        <div>
+            <div class="side-brand">SISTEMA CONTROL REAL</div>
+            <nav class="menu-list">
+                <button class="nav-link">⚙️ DASHBOARD</button>
+                <button class="nav-link">📋 ÓRDENES</button>
+                <button class="nav-link">📦 INVENTARIO</button>
+                <button class="nav-link active">👥 PERSONAL</button>
+                <button class="nav-link">📄 REPORTES</button>
+            </nav>
+        </div>
+        <div class="logout-box">
+            <button class="nav-link" style="color: #f87171; border: none; background: transparent;">➔ CERRAR SESIÓN</button>
+        </div>
+    </aside>
+
+    <!-- 2. PANEL PRINCIPAL DERECHO -->
+    <main>
+        <div class="top-bar">
+            <h2>GESTIÓN DE PERSONAL Y TÉCNICOS</h2>
+        </div>
+
+        <!-- REJILLA DE TARJETAS DE MÉTRICAS DEL PERSONAL -->
+        <div class="cards-row">
+            <div class="metric-card">
+                <p>Personal Registrado</p>
+                <h3 id="txt-total-personal">0</h3>
+            </div>
+            <div class="metric-card">
+                <p>Técnicos Activos</p>
+                <h3 id="txt-tecnicos-activos">0</h3>
+            </div>
+            <div class="metric-card">
+                <p>Administradores</p>
+                <h3>1</h3>
+            </div>
+        </div>
+
+        <!-- FORMULARIO DE INGRESO MANUAL DE PERSONAL -->
+        <section class="real-form-section">
+            <div class="form-section-title">
+                👥 Formulario de Registro de Personal (Validación Rigurosa)
+            </div>
+            
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Nombre Completo (Solo Letras)</label>
+                    <input type="text" id="per-nombre" placeholder="Ej: Patricia Rodriguez">
+                </div>
+                
+                <div class="form-group">
+                    <label>Cédula / ID (Solo Números)</label>
+                    <input type="text" id="per-cedula" maxlength="10" placeholder="Ej: 0999999999">
+                </div>
+                
+                <div class="form-group">
+                    <label>Teléfono (Solo Números)</label>
+                    <input type="text" id="per-telefono" maxlength="10" placeholder="Ej: 0995552211">
+                </div>
+                
+                <div class="form-group">
+                    <label>Cargo / Rol (Solo Letras)</label>
+                    <input type="text" id="per-cargo" placeholder="Ej: Tecnico Especialista">
+                </div>
+                
+                <div class="form-group">
+                    <label>Correo Electrónico</label>
+                    <input type="email" id="per-correo" placeholder="Ej: nombre@taller.com">
+                </div>
+            </div>
+
+            <button type="button" class="btn-submit" id="btn-guardar-personal">Registrar Empleado Real</button>
+        </section>
+
+        <!-- TABLA DE PERSONAL ALMACENADO -->
+        <div class="real-form-section">
+            <div class="form-section-title">📋 Lista de Personal del Taller</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre Completo</th>
+                        <th>Cédula / ID</th>
+                        <th>Teléfono</th>
+                        <th>Cargo / Rol</th>
+                        <th>Correo Electrónico</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpo-tabla-personal">
+                    <tr id="fila-vacia-personal">
+                        <td colspan="5" class="no-data">
+                            No hay empleados registrados en la tabla actualmente. Rellena el formulario superior.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- Enlace al archivo JavaScript de Personal -->
+    <script src="C:/Users/patri/Documents/proyectos/gestion-servicio-tecnico/js/gestion_personal.js"></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Estado Técnico | Portal Cliente</title>
+    <!-- Ruta absoluta local directa para la computadora de Patricia -->
+    <link rel="stylesheet" href="C:/Users/patri/Documents/proyectos/gestion-servicio-tecnico/css/portal_cliente.css">
+</head>
+<body class="client-body">
+
+    <div class="client-container">
+        <!-- Encabezado del Portal -->
+        <header class="client-header">
+            <div class="logo-icon">📱</div>
+            <h1>SERVICIO TECNICO | PORTAL DE CLIENTES</h1>
+            <p>Consulta el estado de tu reparación en tiempo real las 24 horas</p>
+        </header>
+
+        <!-- BUSCADOR DE ORDEN PRINCIPAL -->
+        <section class="search-section">
+            <h2 class="section-title">🔍 BUSCAR ORDEN DE SERVICIO</h2>
+            <div class="search-box">
+                <input type="text" id="txt-buscar-orden" maxlength="6" placeholder="Ingresa el número de tu orden (Ej: 1024)">
+                <button type="button" id="btn-buscar-orden" class="btn-primary">Consultar Estado</button>
+            </div>
+        </section>
+
+        <!-- CONTENEDOR DE RESULTADO DE BÚSQUEDA (Oculto por defecto, se activa mediante JS) -->
+        <section id="result-section" class="result-section hidden">
+            <h2 class="section-title">📋 DETALLES DE TU DISPOSITIVO</h2>
+            <div class="status-card">
+                <div class="status-row">
+                    <span class="label">N° de Orden:</span>
+                    <span id="res-orden" class="value text-blue">#1024</span>
+                </div>
+                <div class="status-row">
+                    <span class="label">Equipo / Modelo:</span>
+                    <span id="res-equipo" class="value">iPhone 11 Pro Max</span>
+                </div>
+                <div class="status-row">
+                    <span class="label">Falla Reportada:</span>
+                    <span id="res-falla" class="value">Cambio de batería y pin de carga</span>
+                </div>
+                <div class="status-row">
+                    <span class="label">Estado de Reparación:</span>
+                    <span id="res-estado" class="badge badge-warning">EN PROCESO</span>
+                </div>
+                <div class="status-row" style="border-bottom: none;">
+                    <span class="label">Abono Registrado:</span>
+                    <span id="res-abono" class="value text-green">$35.00</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- SECCIÓN ADICIONAL DE AYUDA RÁPIDA -->
+        <section class="search-section" style="margin-top: 24px;">
+            <h2 class="section-title">✉️ ¿TIENES DUDAS? CONTÁCTANOS</h2>
+            <div class="client-form-grid">
+                <div class="client-form-group">
+                    <label>Tu Nombre (Solo Letras)</label>
+                    <input type="text" id="cli-nombre" placeholder="Ej: Juan Pérez">
+                </div>
+                <div class="client-form-group">
+                    <label>Tu Teléfono (Solo Números)</label>
+                    <input type="text" id="cli-telefono" maxlength="10" placeholder="Ej: 0995552211">
+                </div>
+            </div>
+            <button type="button" id="btn-enviar-mensaje" class="btn-primary" style="margin-top: 16px; background-color: #0284c7;">Enviar Consulta Corta</button>
+        </section>
+    </div>
+
+    <!-- Enlace al archivo JavaScript del Cliente -->
+    <script src="C:/Users/patri/Documents/proyectos/gestion-servicio-tecnico/js/portal_cliente.js"></script>
+</body>
+</html>

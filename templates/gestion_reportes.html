@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SISTEMA DE REPORTES | Sistema Real</title>
+    <!-- Ruta absoluta local directa adaptada a tu usuario patri -->
+    <link rel="stylesheet" href="C:/Users/patri/Documents/proyectos/gestion-servicio-tecnico/css/gestion_reportes.css">
+</head>
+<body>
+
+    <!-- 1. SIDEBAR IZQUIERDO -->
+    <aside>
+        <div>
+            <div class="side-brand">SISTEMA CONTROL REAL</div>
+            <nav class="menu-list">
+                <button class="nav-link">⚙️ DASHBOARD</button>
+                <button class="nav-link">📋 ÓRDENES</button>
+                <button class="nav-link">📦 INVENTARIO</button>
+                <button class="nav-link">👥 PERSONAL</button>
+                <button class="nav-link active">📄 REPORTES</button>
+            </nav>
+        </div>
+        <div class="logout-box">
+            <button class="nav-link" style="color: #f87171; border: none; background: transparent;">➔ CERRAR SESIÓN</button>
+        </div>
+    </aside>
+
+    <!-- 2. PANEL PRINCIPAL DERECHO -->
+    <main>
+        <div class="top-bar">
+            <h2>BALANCES Y REPORTE ESTADÍSTICO</h2>
+        </div>
+
+        <!-- REJILLA DE TARJETAS DE MÉTRICAS DE REPORTES -->
+        <div class="cards-row">
+            <div class="metric-card">
+                <p>Reportes Generados</p>
+                <h3 id="txt-total-reportes">0</h3>
+            </div>
+            <div class="metric-card">
+                <p>Eficiencia del Taller</p>
+                <h3>94.2%</h3>
+            </div>
+            <div class="metric-card">
+                <p>Meta Financiera Global</p>
+                <h3 id="txt-meta-global">$0.00</h3>
+            </div>
+        </div>
+
+        <!-- FORMULARIO DE INGRESO MANUAL DE CONTROL DE REPORTES -->
+        <section class="real-form-section">
+            <div class="form-section-title">
+                📄 Configuración y Solicitud de Reportes (Validación Rigurosa)
+            </div>
+            
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Nombre del Reporte (Solo Letras)</label>
+                    <input type="text" id="rep-nombre" placeholder="Ej: Balance de Cierre Mensual">
+                </div>
+
+                <div class="form-group">
+                    <label>Año del Balance (Solo Números)</label>
+                    <input type="text" id="rep-anio" maxlength="4" placeholder="Ej: 2026">
+                </div>
+                
+                <div class="form-group">
+                    <label>Monto de Meta Económica ($ - Solo Números)</label>
+                    <input type="text" id="rep-meta" placeholder="Ej: 1500.00">
+                </div>
+                
+                <div class="form-group">
+                    <label>Usuario Solicitante (Solo Letras)</label>
+                    <input type="text" id="rep-usuario" placeholder="Ej: Patricia Rodriguez">
+                </div>
+            </div>
+
+            <button type="button" class="btn-submit" id="btn-generar-reporte">Procesar y Archivar Reporte</button>
+        </section>
+
+        <!-- TABLA DE CONTROL DE REPORTES ARCHIVADOS -->
+        <div class="real-form-section">
+            <div class="form-section-title">📋 Historial de Reportes Consolidados</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Fecha de Registro</th>
+                        <th>Nombre del Reporte</th>
+                        <th>Año Fiscal</th>
+                        <th>Meta Asignada</th>
+                        <th>Responsable</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpo-tabla-reportes">
+                    <tr id="fila-vacia-reportes">
+                        <td colspan="5" class="no-data">
+                            No se han consolidado reportes estadísticos en este período. Rellena el formulario superior.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- Enlace al archivo JavaScript de Reportes -->
+    <script src="C:/Users/patri/Documents/proyectos/gestion-servicio-tecnico/js/gestion_reportes.js"></script>
+</body>
+</html>
