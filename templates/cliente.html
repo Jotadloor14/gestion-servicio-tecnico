@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicio Técnico & Accesorios | Alquimia Team</title>
+    <style>
+        :root {
+            --primary: #d4af37;
+            --dark: #121212;
+            --card-bg: #1e1e1e;
+            --text: #ffffff;
+            --text-muted: #aaaaaa;
+            --success: #2ec4b6;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        body {
+            background-color: var(--dark);
+            color: var(--text);
+            padding-bottom: 40px;
+        }
+        header {
+            background: linear-gradient(135deg, #1f1f1f, #2d2d2d);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 3px solid var(--primary);
+        }
+        header h1 {
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+        section {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        h2 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+            padding-left: 10px;
+        }
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #444;
+            background-color: #2a2a2a;
+            color: #fff;
+        }
+        button {
+            background-color: var(--primary);
+            color: var(--dark);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .tracking-result {
+            display: none;
+            margin-top: 20px;
+            background: #252525;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .progress-container {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        .progress-container::before {
+            content: '';
+            position: absolute;
+            top: 13px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: #444;
+            z-index: 1;
+        }
+        .progress-bar-fill {
+            position: absolute;
+            top: 13px;
+            left: 0;
+            height: 4px;
+            background-color: var(--success);
+            z-index: 1;
+            width: 0%;
+        }
+        .step {
+            width: 30px;
+            height: 30px;
+            background-color: #444;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 2;
+        }
+        .step.active {
+            background-color: var(--success);
+            color: var(--dark);
+        }
+        .step-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        .error-message {
+            color: #ff6b6b;
+            display: none;
+            margin-top: 10px;
+        }
+        .categories {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .cat-btn {
+            background-color: #2a2a2a;
+            color: var(--text);
+            padding: 8px 15px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .cat-btn.active {
+            background-color: var(--primary);
+            color: var(--dark);
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 15px;
+        }
+        .product-card {
+            background-color: #252525;
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+        .product-img {
+            width: 100%;
+            height: 100px;
+            background-color: #333;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+        .product-title {
+            font-size: 0.9rem;
+            font-weight: bold;
+            height: 35px;
+            overflow: hidden;
+        }
+        .product-price {
+            color: var(--primary);
+            font-weight: bold;
+        }
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            font-size: 0.7rem;
+            border-radius: 4px;
+        }
+        .badge.in-stock {
+            background-color: rgba(46, 196, 182, 0.2);
+            color: var(--success);
+        }
+        .badge.out-of-stock {
+            background-color: rgba(255, 107, 107, 0.2);
+            color: #ff6b6b;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Alquimia Team | Servicio Técnico</h1>
+        <p>Consulta el estado de tu equipo en tiempo real.</p>
+    </header>
+
+    <main>
+        <section id="rastreo">
+            <h2>Rastreo de Reparación</h2>
+            <div class="search-box">
+                <input type="text" id="codigo-rastreo" placeholder="Ej: REP-1024">
+                <button onclick="consultarEstado()">Buscar</button>
+            </div>
+            <p id="error-rastreo" class="error-message">El código no existe.</p>
+
+            <div id="resultado-rastreo" class="tracking-result">
+                <p><strong>Dispositivo:</strong> <span id="res-equipo">-</span></p>
+                <p><strong>Falla:</strong> <span id="res-falla">-</span></p>
+                <div class="progress-container">
+                    <div class="progress-bar-fill" id="bar-fill"></div>
+                    <div class="step" id="step-1">1</div>
+                    <div class="step" id="step-2">2</div>
+                    <div class="step" id="step-3">3</div>
+                    <div class="step" id="step-4">4</div>
+                </div>
+                <div class="step-labels">
+                    <span>Recibido</span>
+                    <span>En Reparación</span>
+                    <span>Listo</span>
+                    <span>Entregado</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="catalogo">
+            <h2>Catálogo de Accesorios</h2>
+            <div class="categories">
+                <button class="cat-btn active" onclick="filtrarCategoria('Todos', this)">Todos</button>
+                <button class="cat-btn" onclick="filtrarCategoria('Cargadores', this)">Cargadores</button>
+                <button class="cat-btn" onclick="filtrarCategoria('Estuches', this)">Estuches</button>
+            </div>
+            <div class="products-grid" id="productos-container"></div>
+        </section>
+    </main>
+
+    <script>
+        const baseDatosReparaciones = {
+            "REP-1024": { equipo: "Samsung Galaxy S23", falla: "Cambio de pantalla", estado: 2 },
+            "REP-1025": { equipo: "iPhone 14 Pro", falla: "Puerto de carga", estado: 3 }
+        };
+
+        const inventarioAccesorios = [
+            { id: 1, nombre: "Cargador 25W", categoria: "Cargadores", precio: "$15.00", stock: 10, icono: "🔌" },
+            { id: 2, nombre: "Estuche Transparente", categoria: "Estuches", precio: "$12.50", stock: 5, icono: "📱" },
+            { id: 3, nombre: "Cable USB-C", categoria: "Cargadores", precio: "$10.00", stock: 0, icono: "⚡" }
+        ];
+
+        function consultarEstado() {
+            const codigo = document.getElementById("codigo-rastreo").value.trim().toUpperCase();
+            const errorTxt = document.getElementById("error-rastreo");
+            const resultadoDiv = document.getElementById("resultado-rastreo");
+
+            if (baseDatosReparaciones[codigo]) {
+                errorTxt.style.display = "none";
+                resultadoDiv.style.display = "block";
+                const data = baseDatosReparaciones[codigo];
+                document.getElementById("res-equipo").innerText = data.equipo;
+                document.getElementById("res-falla").innerText = data.falla;
+
+                const estadoActual = data.estado;
+                const porcentajes = { 1: 0, 2: 33, 3: 66, 4: 100 };
+                
+                for(let i=1; i<=4; i++) document.getElementById(`step-${i}`).classList.remove("active");
+                for(let i=1; i<=estadoActual; i++) document.getElementById(`step-${i}`).classList.add("active");
+                document.getElementById("bar-fill").style.width = porcentajes[estadoActual] + "%";
+            } else {
+                resultadoDiv.style.display = "none";
+                errorTxt.style.display = "block";
+            }
+        }
+
+        function cargarProductos(productos) {
+            const container = document.getElementById("productos-container");
+            container.innerHTML = "";
+            productos.forEach(prod => {
+                const stockBadge = prod.stock > 0 ? `<span class="badge in-stock">Stock: ${prod.stock}</span>` : `<span class="badge out-of-stock">Agotado</span>`;
+                container.innerHTML += `
+                    <div class="product-card">
+                        <div class="product-img">${prod.icono}</div>
+                        <div class="product-title">${prod.nombre}</div>
+                        <div class="product-price">${prod.precio}</div>
+                        <div>${stockBadge}</div>
+                    </div>`;
+            });
+        }
+
+        function filtrarCategoria(categoria, boton) {
+            document.querySelectorAll(".cat-btn").forEach(btn => btn.classList.remove("active"));
+            boton.classList.add("active");
+            if (categoria === "Todos") {
+                cargarProductos(inventarioAccesorios);ss
+            } else {
+                cargarProductos(inventarioAccesorios.filter(p => p.categoria === categoria));
+            }
+        }
+
+        window.onload = () => cargarProductos(inventarioAccesorios);
+    </script>
+</body>
+</html>
