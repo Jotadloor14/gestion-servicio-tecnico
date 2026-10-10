@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GESTIÓN DE ÓRDENES | Sistema Real</title>
+    <!-- Ruta absoluta local directa adaptada a tu usuario patri -->
+    <link rel="stylesheet" href="C:/Users/patri/Documents/proyectos/gestion-servicio-tecnico/css/gestion_ordenes.css">
+</head>
+<body>
+
+    <!-- 1. SIDEBAR IZQUIERDO -->
+    <aside>
+        <div>
+            <div class="side-brand">SISTEMA CONTROL REAL</div>
+            <nav class="menu-list">
+                <button class="nav-link">⚙️ DASHBOARD</button>
+                <button class="nav-link active">📋 ÓRDENES</button>
+                <button class="nav-link">📦 INVENTARIO</button>
+                <button class="nav-link">👥 PERSONAL</button>
+                <button class="nav-link">📄 REPORTES</button>
+            </nav>
+        </div>
+        <div class="logout-box">
+            <button class="nav-link" style="color: #f87171; border: none; background: transparent;">➔ CERRAR SESIÓN</button>
+        </div>
+    </aside>
+
+    <!-- 2. PANEL PRINCIPAL DERECHO -->
+    <main>
+        <div class="top-bar">
+            <h2>CONTROL Y RECEPCIÓN DE ÓRDENES</h2>
+        </div>
+
+        <!-- REJILLA DE TARJETAS DE MÉTRICAS OPERATIVAS -->
+        <div class="cards-row">
+            <div class="metric-card">
+                <p>Órdenes Recibidas</p>
+                <h3 id="txt-total-ordenes">0</h3>
+            </div>
+            <div class="metric-card">
+                <p>Monto Total Recaudado</p>
+                <h3 id="txt-monto-total">$0.00</h3>
+            </div>
+            <div class="metric-card">
+                <p>En Proceso de Reparación</p>
+                <h3 id="txt-en-proceso">0</h3>
+            </div>
+        </div>
+
+        <!-- FORMULARIO DE INGRESO MANUAL DE ÓRDENES DE TALLER -->
+        <section class="real-form-section">
+            <div class="form-section-title">
+                📋 Formulario de Nueva Orden Técnica (Validación Rigurosa)
+            </div>
+            
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>N° de Orden (Solo Números)</label>
+                    <input type="text" id="ord-numero" placeholder="Ej: 1001">
+                </div>
+
+                <div class="form-group">
+                    <label>Cliente / Propietario (Solo Letras)</label>
+                    <input type="text" id="ord-cliente" placeholder="Ej: Carlos Mendoza">
+                </div>
+                
+                <div class="form-group">
+                    <label>Equipo / Dispositivo</label>
+                    <input type="text" id="ord-equipo" placeholder="Ej: Samsung Galaxy S23">
+                </div>
+                
+                <div class="form-group">
+                    <label>Falla Diagnosticada (Solo Letras)</label>
+                    <input type="text" id="ord-falla" placeholder="Ej: Cambio de modulo tactil">
+                </div>
+                
+                <div class="form-group">
+                    <label>Precio Estimado ($ - Solo Números)</label>
+                    <input type="text" id="ord-precio" placeholder="Ej: 65.00">
+                </div>
+
+                <div class="form-group">
+                    <label>Abono Inicial ($ - Solo Números)</label>
+                    <input type="text" id="ord-abono" placeholder="Ej: 20.00">
+                </div>
+            </div>
+
+            <button type="button" class="btn-submit" id="btn-guardar-orden">Generar Orden Real</button>
+        </section>
+
+        <!-- TABLA DE CONTROL OPERATIVO EN TIEMPO REAL -->
+        <div class="real-form-section">
+            <div class="form-section-title">📋 Historial de Órdenes del Taller</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>N° Orden</th>
+                        <th>Cliente</th>
+                        <th>Equipo / Modelo</th>
+                        <th>Falla Reportada</th>
+                        <th>Precio Total</th>
+                        <th>Abono Ingresado</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpo-tabla-ordenes">
+                    <tr id="fila-vacia-ordenes">
+                        <td colspan="6" class="no-data">
+                            No hay órdenes registradas para el servicio técnico actualmente. Rellena el formulario.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- Enlace al archivo JavaScript de Órdenes -->
+    <script src="C:/Users/patri/Documents/proyectos/gestion-servicio-tecnico/js/gestion_ordenes.js"></script>
+</body>
+</html>

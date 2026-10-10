@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DASHBOARD ADMINISTRADOR | Sistema Real</title>
+    <!-- RUTA ABSOLUTA CORREGIDA: Apunta exactamente a tu carpeta css en el disco C -->
+    <link rel="stylesheet" href="C:/Users/patri/Documents/proyectos/gestion-servicio-tecnico/css/dashboard_admin.css">
+</head>
+<body>
+
+    <!-- 1. SIDEBAR IZQUIERDO -->
+    <aside>
+        <div>
+            <div class="side-brand">SISTEMA CONTROL REAL</div>
+            <nav class="menu-list">
+                <button class="nav-link active">⚙️ DASHBOARD</button>
+                <button class="nav-link">📋 ÓRDENES</button>
+                <button class="nav-link">📦 INVENTARIO</button>
+                <button class="nav-link">👥 PERSONAL</button>
+                <button class="nav-link">📄 REPORTES</button>
+            </nav>
+        </div>
+        <div class="logout-box">
+            <button class="nav-link" style="color: #f87171; border: none; background: transparent;">➔ CERRAR SESIÓN</button>
+        </div>
+    </aside>
+
+    <!-- 2. PANEL PRINCIPAL DERECHO -->
+    <main>
+        <div class="top-bar">
+            <h2>BIENVENIDO ADMINISTRADOR</h2>
+        </div>
+
+        <!-- REJILLA DE TARJETAS DE MÉTRICAS -->
+        <div class="cards-row">
+            <div class="metric-card">
+                <p>Órdenes Totales</p>
+                <h3 id="txt-totales">0</h3>
+            </div>
+            <div class="metric-card">
+                <p>Reparaciones Pendientes</p>
+                <h3 id="txt-pendientes">0</h3>
+            </div>
+            <div class="metric-card">
+                <p>Equipos Listo</p>
+                <h3 id="txt-listos">0</h3>
+            </div>
+        </div>
+
+        <!-- FORMULARIO DE INGRESO MANUAL -->
+        <section class="real-form-section">
+            <div class="form-section-title">
+                📥 Formulario de Registro de Órdenes (Validación Rigurosa)
+            </div>
+            
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Cliente (Solo Letras)</label>
+                    <input type="text" id="reg-cliente" placeholder="Ej: Patricia Rodriguez">
+                </div>
+                
+                <div class="form-group">
+                    <label>Teléfono (Solo Números)</label>
+                    <input type="text" id="reg-telefono" maxlength="10" placeholder="Ej: 0995552211">
+                </div>
+                
+                <div class="form-group">
+                    <label>Equipo / Modelo</label>
+                    <input type="text" id="reg-equipo" placeholder="Ej: iPhone 11 Pro">
+                </div>
+                
+                <div class="form-group">
+                    <label>Falla Reportada (Solo Letras)</label>
+                    <input type="text" id="reg-falla" placeholder="Ej: Pin de carga sulfatado">
+                </div>
+                
+                <div class="form-group">
+                    <label>Abono de Entrada ($)</label>
+                    <input type="text" id="reg-abono" placeholder="Ej: 35.50">
+                </div>
+            </div>
+
+            <button type="button" class="btn-submit" id="btn-guardar-registro">Guardar Registro Real</button>
+        </section>
+
+        <!-- TABLA DE REGISTROS ALMACENADOS -->
+        <div class="real-form-section">
+            <div class="form-section-title">📋 Registros Almacenados</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Teléfono</th>
+                        <th>Equipo / Modelo</th>
+                        <th>Falla</th>
+                        <th>Abono ($)</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpo-tabla-real">
+                    <tr id="fila-vacia-registro">
+                        <td colspan="5" class="no-data">
+                            No hay registros guardados en la tabla actualmente. Rellena el formulario superior.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- RUTA ABSOLUTA CORREGIDA: Apunta exactamente a tu carpeta js en el disco C -->
+    <script src="C:/Users/patri/Documents/proyectos/gestion-servicio-tecnico/js/dashboard_admin.js"></script>
+</body>
+</html>
