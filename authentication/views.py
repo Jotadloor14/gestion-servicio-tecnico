@@ -21,6 +21,10 @@ def login_usuario(request):
 
         if user is not None:
             login(request, user) #Aqui se crea la cookie de sesion de forma nativa
+
+            # Verificamos de forma segura si el usuario tiene el campo rol; si no (como en el superuser), le asignamos 'administrador
+            rol_usuario = getattr(user, 'rol', 'administrador')
+            
             return JsonResponse({
                 'message': 'Inicio de sesión exitoso',
                 'usuario': user.username,
@@ -36,3 +40,8 @@ def login_usuario(request):
 def get_csrf_token(request):
     #Endpoint auxiliar indispensable para que el Frontend obtenga el token CSRF inicial
     return JsonResponse({'status': 'ready'}, status=200)
+
+from django.shortcuts import render
+
+def vista_login_html(request):
+    return render(request, 'login.html')
