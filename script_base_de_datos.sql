@@ -35,14 +35,19 @@ CREATE TABLE ORDENES_SERVICIO (
  equipo_modelo VARCHAR(150) NOT NULL,
  falla_reportada TEXT NOT NULL,
  costo_total DECIMAL(10, 2)NOT NULL DEFAULT 0.00,
+ abono_economico DECIMAL(10, 2) NOT NULL DEFAULT 0.00,
  estado ENUM('Recibido', 'En Reparación', 'Listo', 'Entregado')NOT NULL DEFAULT 'Recibido', 
  fecha_ingreso TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
  fecha_salida TIMESTAMP NULL,
  
  CONSTRAINT FK_orden_tecnico FOREIGN KEY (tecnico_id) 
         REFERENCES USUARIOS(id) ON DELETE RESTRICT,
-    CONSTRAINT FK_orden_cliente FOREIGN KEY (cliente_id) 
-        REFERENCES CLIENTES(id) ON DELETE RESTRICT);
+ CONSTRAINT FK_orden_cliente FOREIGN KEY (cliente_id) 
+        REFERENCES CLIENTES(id) ON DELETE RESTRICT
+ CONSTRAINT CHK_costo_positivo CHECK (costo_total >= 0.00),
+ CONSTRAINT CHK_abono_positivo CHECK (abono_economico >= 0.00)
+
+);
         
 -- crear tabla intermedia orden_accesorios(repuestos asignados a cada cliente)
 CREATE TABLE ORDEN_ACCESORIOS (
