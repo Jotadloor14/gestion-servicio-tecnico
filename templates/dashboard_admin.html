@@ -1,28 +1,37 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DASHBOARD ADMINISTRADOR | Sistema Real</title>
-    <!-- RUTA ABSOLUTA CORREGIDA: Apunta exactamente a tu carpeta css en el disco C -->
-    <link rel="stylesheet" href="C:/Users/patri/Documents/proyectos/gestion-servicio-tecnico/css/dashboard_admin.css">
+
+    <!-- RUTA CSS -->
+    <link rel="stylesheet" href="/static/dashboard_admin.css">
 </head>
 <body>
 
-    <!-- 1. SIDEBAR IZQUIERDO -->
+    <!-- 1. SIDEBAR IZQUIERDO (Acoplado con Enlaces Nativos de Django) -->
     <aside>
         <div>
             <div class="side-brand">SISTEMA CONTROL REAL</div>
             <nav class="menu-list">
-                <button class="nav-link active">⚙️ DASHBOARD</button>
-                <button class="nav-link">📋 ÓRDENES</button>
-                <button class="nav-link">📦 INVENTARIO</button>
-                <button class="nav-link">👥 PERSONAL</button>
-                <button class="nav-link">📄 REPORTES</button>
+                <a href="{% url 'vista_dashboard' %}" class="nav-link active">⚙️ DASHBOARD</a> <!-- Único activo -->
+                <a href="{% url 'vista_ordenes' %}" class="nav-link">📋 ÓRDENES</a>
+                <a href="{% url 'vista_inventario' %}" class="nav-link">📦 INVENTARIO</a>
+                <a href="{% url 'vista_personal' %}" class="nav-link">👥 PERSONAL</a>
+                <a href="{% url 'vista_reportes' %}" class="nav-link">📄 REPORTES</a>
             </nav>
+
         </div>
         <div class="logout-box">
-            <button class="nav-link" style="color: #f87171; border: none; background: transparent;">➔ CERRAR SESIÓN</button>
+            <!-- Botón de Cerrar Sesión de Django con Formulario Seguro por directivas OWASP -->
+            <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="nav-link" style="color: #f87171; border: none; background: transparent; cursor: pointer; text-align: left; width: 100%;">
+                    ➔ CERRAR SESIÓN
+                </button>
+            </form>
         </div>
     </aside>
 
@@ -108,7 +117,8 @@
         </div>
     </main>
 
-    <!-- RUTA ABSOLUTA CORREGIDA: Apunta exactamente a tu carpeta js en el disco C -->
-    <script src="C:/Users/patri/Documents/proyectos/gestion-servicio-tecnico/js/dashboard_admin.js"></script>
+    <!-- RUTA js -->
+    <script src="/static/dashboard_admin.js"></script>
+
 </body>
 </html>
