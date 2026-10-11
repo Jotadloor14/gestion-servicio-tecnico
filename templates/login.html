@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -5,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel Administrativo </title>
     <!-- enlace css -->
-    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="{% static 'stylelogin.css' %}">
 </head>
 <body class="login-body">
 
@@ -56,7 +57,7 @@
         </form>
     </div>
 
-    <!-- Enlace al archivo lógico de Dennis -->
-    <script src="login.js"></script>
+    <!-- Enlace al archivo lógico -->
+    <script src="{% static 'login.js' %}"></script>
 </body>
 </html>

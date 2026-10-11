@@ -1,7 +1,7 @@
 /**
  * Alquimia Team - Control de Servicio Técnico y Stock
  * Frontend Logic & Login Validation Flow
- * Desarrollado y Acoplado por: Patricia Rodríguez (@patriciarodriguez-1989)
+ * Desarrollado y Acoplado por: Patricia Rodríguez
  */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         try {
-            // 3. Petición asíncrona mediante fetch() hacia la API que armó Carranza
+            // 3. Petición asíncrona mediante fetch() hacia la API 
             const respuesta = await fetch("/api/auth/login/", {
                 method: "POST",
                 headers: {
@@ -41,8 +41,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     "X-CSRFToken": obtenerTokenCSRF('csrftoken')
                 },
                 body: JSON.stringify({
-                    usuario: usuarioValor,
-                    contrasena: contrasenaValor
+                    username: usuarioValor,
+                    password: contrasenaValor
                 })
             });
 
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         } catch (error) {
             // Manejo de contingencia por fallas de red o servidor backend desconectado
-            contenedorError.textContent = "Error crítico: No se pudo establecer conexión con el servidor de TecnoGest.";
+            contenedorError.textContent = "Error crítico: No se pudo establecer conexión con el servidor del sistema.";
             contenedorError.classList.remove("hidden");
             console.error("Error en la petición de login fetch:", error);
         } finally {
