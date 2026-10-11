@@ -8,6 +8,7 @@ CREATE TABLE USUARIOS(
     username VARCHAR(100) NOT NULL UNIQUE, 
     password_hash VARCHAR(255) NOT NULL, 
     rol ENUM ('tecnico', 'administrador') NOT NULL,
+    last_login TIMESTAMP NULL,
     fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
