@@ -1,0 +1,165 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Accesorios | Servicio Técnico</title>
+
+    <link rel="stylesheet" href="{% static 'catalogo_cliente.css' %}">
+    <script src="{% static 'catalogo_cliente.js' %}" defer></script>
+</head>
+<body>
+
+    
+<!-- ENCABEZADO -->
+<header class="encabezado">
+
+    <!-- LOGOTIPO -->
+    <a href="{% url 'inicio_cliente' %}" class="marca">
+        <span class="logo">ST</span>
+        <span>Servicio Técnico</span>
+    </a>
+
+    <!-- BOTÓN PARA CELULARES -->
+    <button
+        type="button"
+        class="menu-boton"
+        id="menu-boton"
+        aria-label="Abrir menú"
+        aria-expanded="false">
+        ☰
+    </button>
+
+    <!-- MENÚ DE NAVEGACIÓN -->
+    <nav class="navegacion" id="navegacion">
+
+        <a href="{% url 'inicio_cliente' %}">
+            Inicio
+        </a>
+
+        <a href="{% url 'portal_cliente' %}">
+            Rastrear
+        </a>
+
+        <a href="{% url 'catalogo_cliente' %}" class="activo">
+            Accesorios
+        </a>
+
+    </nav>
+
+</header>
+
+
+    <main class="contenedor">
+
+        <div class="titulo-pagina">
+            <span>EXPLORA NUESTROS PRODUCTOS</span>
+            <h1>Catálogo de accesorios y repuestos</h1>
+            <p>
+                Consulta nuestros productos de demostración.
+                Los precios y existencias reales estarán disponibles
+                cuando se conecte el inventario.
+            </p>
+        </div>
+
+        <div class="distribucion">
+
+            <!-- MENÚ DE CATEGORÍAS -->
+            <aside class="barra-lateral">
+                <h2>Categorías</h2>
+
+                <div class="lista-categorias">
+                    <button class="categoria activa" data-categoria="Todos">
+                        Todos
+                    </button>
+                    <button class="categoria" data-categoria="Cargadores">
+                        Cargadores
+                    </button>
+                    <button class="categoria" data-categoria="Estuches">
+                        Estuches
+                    </button>
+                    <button class="categoria" data-categoria="Micas">
+                        Micas
+                    </button>
+                    <button class="categoria" data-categoria="Audífonos">
+                        Audífonos
+                    </button>
+                    <button class="categoria" data-categoria="Cables">
+                        Cables
+                    </button>
+                    <button class="categoria" data-categoria="Repuestos">
+                        Repuestos
+                    </button>
+                    <button class="categoria" data-categoria="Otros">
+                        Otros
+                    </button>
+                </div>
+            </aside>
+
+            <!-- CONTENIDO DEL CATÁLOGO -->
+            <section class="catalogo">
+
+                <div class="filtros">
+                    <div class="buscador">
+                        <span aria-hidden="true">⌕</span>
+                        <input type="search" id="buscar-producto"
+                               placeholder="Buscar accesorios..."
+                               aria-label="Buscar accesorios">
+                    </div>
+
+                    <select id="filtro-categoria"
+                            aria-label="Filtrar por categoría">
+                        <option value="Todos">Todas las categorías</option>
+                        <option value="Cargadores">Cargadores</option>
+                        <option value="Estuches">Estuches</option>
+                        <option value="Micas">Micas</option>
+                        <option value="Audífonos">Audífonos</option>
+                        <option value="Cables">Cables</option>
+                        <option value="Repuestos">Repuestos</option>
+                        <option value="Otros">Otros</option>
+                    </select>
+                </div>
+
+                <!-- PRODUCTOS CREADOS CON JAVASCRIPT -->
+                <div class="productos" id="productos"></div>
+
+                <p class="sin-resultados" id="sin-resultados" hidden>
+                    No se encontraron productos para esta búsqueda.
+                </p>
+
+                <p class="contador" id="contador">
+                    Productos encontrados: 0
+                </p>
+
+            </section>
+        </div>
+    </main>
+
+    <!-- DETALLE DEL PRODUCTO -->
+    <div class="modal" id="modal" hidden>
+        <div class="modal-contenido" role="dialog"
+             aria-modal="true"
+             aria-labelledby="detalle-titulo">
+
+            <button class="cerrar-modal" id="cerrar-modal"
+                    aria-label="Cerrar detalle">×</button>
+
+            <div class="modal-imagen" id="detalle-imagen"></div>
+            <h2 id="detalle-titulo"></h2>
+            <p id="detalle-categoria"></p>
+            <p class="detalle-precio" id="detalle-precio"></p>
+            <p id="detalle-stock"></p>
+
+            <p class="nota-demo">
+                Producto de demostración. Consulta su disponibilidad
+                real cuando el catálogo esté conectado al inventario.
+            </p>
+        </div>
+    </div>
+
+    <footer class="pie">
+        Servicio Técnico y Stock | Atención a nuestros clientes
+    </footer>
+</body>
+</html>

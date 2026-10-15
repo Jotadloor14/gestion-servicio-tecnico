@@ -1,76 +1,279 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulta de Estado Técnico | Portal Cliente</title>
-    <!-- Ruta absoluta local directa para la computadora de Patricia -->
-    <link rel="stylesheet" href="C:/Users/patri/Documents/proyectos/gestion-servicio-tecnico/css/portal_cliente.css">
+
+    <title>Rastreo de Reparación | Servicio Técnico</title>
+
+    <!-- ESTILOS DEL RASTREO -->
+    <link rel="stylesheet" href="{% static 'rastreo_cliente.css' %}">
+
+    <!-- JAVASCRIPT DEL RASTREO -->
+    <script src="{% static 'rastreo_cliente.js' %}" defer></script>
 </head>
-<body class="client-body">
 
-    <div class="client-container">
-        <!-- Encabezado del Portal -->
-        <header class="client-header">
-            <div class="logo-icon">📱</div>
-            <h1>SERVICIO TECNICO | PORTAL DE CLIENTES</h1>
-            <p>Consulta el estado de tu reparación en tiempo real las 24 horas</p>
-        </header>
+<body>
 
-        <!-- BUSCADOR DE ORDEN PRINCIPAL -->
-        <section class="search-section">
-            <h2 class="section-title">🔍 BUSCAR ORDEN DE SERVICIO</h2>
-            <div class="search-box">
-                <input type="text" id="txt-buscar-orden" maxlength="6" placeholder="Ingresa el número de tu orden (Ej: 1024)">
-                <button type="button" id="btn-buscar-orden" class="btn-primary">Consultar Estado</button>
-            </div>
+    <!-- ================================= -->
+    <!-- ENCABEZADO -->
+    <!-- ================================= -->
+
+    <header class="encabezado">
+
+        <a href="{% url 'inicio_cliente' %}" class="marca">
+            <span class="logo">ST</span>
+            <span>Servicio Técnico</span>
+        </a>
+
+        <!-- MENÚ PARA CELULARES -->
+        <button
+            type="button"
+            class="menu-boton"
+            id="menu-boton"
+            aria-label="Abrir menú"
+            aria-expanded="false">
+            ☰
+        </button>
+
+        <!-- MENÚ DE NAVEGACIÓN -->
+        <nav class="navegacion" id="navegacion">
+
+            <a href="{% url 'inicio_cliente' %}">
+              Inicio
+            </a>
+
+            <a href="{% url 'portal_cliente' %}" class="activo">
+              Rastrear
+            </a>
+
+            <a href="{% url 'catalogo_cliente' %}">
+              Accesorios
+            </a>
+
+        </nav>
+
+    </header>
+
+    <!-- ================================= -->
+    <!-- CONTENIDO PRINCIPAL -->
+    <!-- ================================= -->
+
+    <main class="contenedor">
+
+        <!-- SECCIÓN PARA INGRESAR CÓDIGO -->
+        <section class="rastreo">
+
+            <span class="etiqueta">
+                SEGUIMIENTO DE REPARACIONES
+            </span>
+
+            <h1>Rastrea tu reparación</h1>
+
+            <p class="descripcion">
+                Ingresa tu código de rastreo de 7 dígitos
+                para consultar el estado de tu reparación.
+            </p>
+
+            <!-- FORMULARIO DE RASTREO -->
+            <form id="form-rastreo" class="form-rastreo">
+
+                <div class="campo">
+
+                    <label for="codigo">
+                        INGRESE SU CÓDIGO DE RASTREO
+                    </label>
+
+                    <input
+                        type="text"
+                        id="codigo"
+                        name="codigo"
+                        placeholder="Ejemplo: 1234567"
+                        maxlength="7"
+                        minlength="7"
+                        inputmode="numeric"
+                        pattern="[0-9]{7}"
+                        title="Ingresa exactamente 7 números"
+                        autocomplete="off"
+                        required
+                    >
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="boton-consultar">
+                    Consultar
+                </button>
+
+            </form>
+
+            <!-- MENSAJES DE VALIDACIÓN -->
+            <p
+                id="mensaje"
+                class="mensaje"
+                role="status"
+                aria-live="polite">
+            </p>
+
         </section>
 
-        <!-- CONTENEDOR DE RESULTADO DE BÚSQUEDA (Oculto por defecto, se activa mediante JS) -->
-        <section id="result-section" class="result-section hidden">
-            <h2 class="section-title">📋 DETALLES DE TU DISPOSITIVO</h2>
-            <div class="status-card">
-                <div class="status-row">
-                    <span class="label">N° de Orden:</span>
-                    <span id="res-orden" class="value text-blue">#1024</span>
-                </div>
-                <div class="status-row">
-                    <span class="label">Equipo / Modelo:</span>
-                    <span id="res-equipo" class="value">iPhone 11 Pro Max</span>
-                </div>
-                <div class="status-row">
-                    <span class="label">Falla Reportada:</span>
-                    <span id="res-falla" class="value">Cambio de batería y pin de carga</span>
-                </div>
-                <div class="status-row">
-                    <span class="label">Estado de Reparación:</span>
-                    <span id="res-estado" class="badge badge-warning">EN PROCESO</span>
-                </div>
-                <div class="status-row" style="border-bottom: none;">
-                    <span class="label">Abono Registrado:</span>
-                    <span id="res-abono" class="value text-green">$35.00</span>
-                </div>
-            </div>
-        </header>
+        <!-- ================================= -->
+        <!-- RESULTADO DE LA REPARACIÓN -->
+        <!-- ================================= -->
 
-        <!-- SECCIÓN ADICIONAL DE AYUDA RÁPIDA -->
-        <section class="search-section" style="margin-top: 24px;">
-            <h2 class="section-title">✉️ ¿TIENES DUDAS? CONTÁCTANOS</h2>
-            <div class="client-form-grid">
-                <div class="client-form-group">
-                    <label>Tu Nombre (Solo Letras)</label>
-                    <input type="text" id="cli-nombre" placeholder="Ej: Juan Pérez">
+        <section
+            class="resultado"
+            id="resultado"
+            hidden>
+
+            <h2>Estado de tu reparación</h2>
+
+            <!-- SEGUIMIENTO DE LOS 4 ESTADOS -->
+            <div class="seguimiento">
+
+                <!-- ESTADO 1 -->
+                <div class="paso" data-estado="0">
+
+                    <span class="circulo">1</span>
+
+                    <span class="nombre-paso">
+                        Recibido
+                    </span>
+
                 </div>
-                <div class="client-form-group">
-                    <label>Tu Teléfono (Solo Números)</label>
-                    <input type="text" id="cli-telefono" maxlength="10" placeholder="Ej: 0995552211">
+
+                <!-- ESTADO 2 -->
+                <div class="paso" data-estado="1">
+
+                    <span class="circulo">2</span>
+
+                    <span class="nombre-paso">
+                        En reparación
+                    </span>
+
                 </div>
+
+                <!-- ESTADO 3 -->
+                <div class="paso" data-estado="2">
+
+                    <span class="circulo">3</span>
+
+                    <span class="nombre-paso">
+                        Listo para entrega
+                    </span>
+
+                </div>
+
+                <!-- ESTADO 4 -->
+                <div class="paso" data-estado="3">
+
+                    <span class="circulo">4</span>
+
+                    <span class="nombre-paso">
+                        Entregado
+                    </span>
+
+                </div>
+
             </div>
-            <button type="button" id="btn-enviar-mensaje" class="btn-primary" style="margin-top: 16px; background-color: #0284c7;">Enviar Consulta Corta</button>
+
+            <!-- ================================= -->
+            <!-- INFORMACIÓN DE LA REPARACIÓN -->
+            <!-- ================================= -->
+
+            <div class="informacion">
+
+                <!-- INFORMACIÓN DEL EQUIPO -->
+                <div class="tarjeta datos-equipo">
+
+                    <h3>Información del equipo</h3>
+
+                    <div class="dato">
+
+                        <span>Equipo:</span>
+
+                        <strong id="equipo">—</strong>
+
+                    </div>
+
+                    <div class="dato">
+
+                        <span>Modelo:</span>
+
+                        <strong id="modelo">—</strong>
+
+                    </div>
+
+                    <div class="dato">
+
+                        <span>Estado actual:</span>
+
+                        <strong id="estado-actual">—</strong>
+
+                    </div>
+
+                </div>
+
+                <!-- INFORMACIÓN ADICIONAL -->
+                <div class="tarjeta datos-adicionales">
+
+                    <h3>Información adicional</h3>
+
+                    <div class="dato">
+
+                        <span>Fecha de recepción:</span>
+
+                        <strong id="fecha-recepcion">—</strong>
+
+                    </div>
+
+                    <div class="dato">
+
+                        <span>Técnico asignado:</span>
+
+                        <strong id="tecnico">—</strong>
+
+                    </div>
+
+                    <div class="observaciones">
+
+                        <span>Observaciones:</span>
+
+                        <p id="observaciones">—</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- AVISO DE DEMOSTRACIÓN -->
+            <p
+                class="descripcion"
+                style="margin-top: 20px; text-align: center;">
+
+                Vista de demostración.
+                Los datos reales estarán disponibles
+                cuando se conecte el sistema.
+
+            </p>
+
         </section>
-    </div>
 
-    <!-- Enlace al archivo JavaScript del Cliente -->
-    <script src="C:/Users/patri/Documents/proyectos/gestion-servicio-tecnico/js/portal_cliente.js"></script>
+    </main>
+
+    <!-- ================================= -->
+    <!-- PIE DE PÁGINA -->
+    <!-- ================================= -->
+
+    <footer class="pie">
+
+        Servicio Técnico y Stock |
+        Atención a nuestros clientes
+
+    </footer>
+
 </body>
 </html>

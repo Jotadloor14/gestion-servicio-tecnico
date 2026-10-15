@@ -1,0 +1,312 @@
+
+/* COLORES PRINCIPALES */
+
+:root {
+    --azul-oscuro: #102c54;
+    --azul: #2463ad;
+    --azul-claro: #e9f3ff;
+    --fondo: #f5f9ff;
+    --texto: #23364f;
+    --blanco: #ffffff;
+}
+
+/* CONFIGURACIÓN GENERAL */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--fondo);
+    color: var(--texto);
+}
+
+/* ENCABEZADO */
+
+.encabezado {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 7%;
+    background-color: var(--blanco);
+    box-shadow: 0 2px 12px #102c5410;
+}
+
+.marca {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    font-size: 19px;
+    font-weight: bold;
+    color: var(--azul-oscuro);
+}
+
+.logo {
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    background-color: var(--azul-oscuro);
+    color: white;
+}
+
+/* MENÚ DE NAVEGACIÓN */
+
+.navegacion {
+    display: flex;
+    gap: 35px;
+}
+
+.navegacion a {
+    text-decoration: none;
+    color: var(--texto);
+    font-weight: 600;
+    padding: 9px 0;
+}
+
+.navegacion a:hover,
+.navegacion .activo {
+    color: var(--azul);
+}
+
+.menu-boton {
+    display: none;
+    border: none;
+    background: none;
+    font-size: 28px;
+    color: var(--azul-oscuro);
+    cursor: pointer;
+}
+
+/* CONTENIDO PRINCIPAL */
+
+main {
+    max-width: 1250px;
+    margin: auto;
+    padding: 65px 30px;
+}
+
+.principal {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 55px;
+    min-height: 390px;
+}
+
+.etiqueta {
+    color: var(--azul);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.principal h1 {
+    margin: 20px 0;
+    font-size: clamp(34px, 4vw, 52px);
+    line-height: 1.15;
+    color: var(--azul-oscuro);
+}
+
+.principal h1 span {
+    display: block;
+    color: var(--azul);
+}
+
+.principal-texto p {
+    max-width: 490px;
+    line-height: 1.8;
+    color: #53657b;
+}
+
+/* BOTONES */
+
+.botones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.boton {
+    display: inline-block;
+    padding: 15px 22px;
+    border-radius: 9px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.primario {
+    background-color: var(--azul);
+    color: white;
+}
+
+.secundario {
+    background-color: white;
+    color: var(--azul);
+    border: 2px solid var(--azul);
+}
+
+.boton:hover {
+    transform: translateY(-3px);
+}
+
+/* IMAGEN PRINCIPAL / CARRUSEL */
+
+.principal-imagen {
+    width: 100%;
+}
+
+.imagen-contenido {
+    min-height: 330px;
+    padding: 30px;
+    border-radius: 22px;
+    background: linear-gradient(
+        135deg,
+        #dcecff,
+        #9bc4f5
+    );
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    color: var(--azul-oscuro);
+}
+
+.imagen-icono {
+    font-size: 85px;
+    margin-bottom: 20px;
+}
+
+.imagen-contenido h2 {
+    margin-bottom: 12px;
+    font-size: 24px;
+}
+
+.imagen-contenido p {
+    max-width: 300px;
+    line-height: 1.6;
+}
+
+/* INDICADORES DEL CARRUSEL */
+
+.indicadores {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 17px;
+}
+
+.punto {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--azul);
+    background-color: white;
+    cursor: pointer;
+}
+
+.punto.activo {
+    background-color: var(--azul);
+}
+
+/* TARJETAS INFERIORES */
+
+.beneficios {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    margin-top: 65px;
+}
+
+.beneficio {
+    background-color: white;
+    padding: 35px 25px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 5px 20px #102c540c;
+}
+
+.beneficio-icono {
+    display: grid;
+    place-items: center;
+    margin: 0 auto 17px;
+
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+
+    background-color: var(--azul-claro);
+    color: var(--azul);
+    font-size: 34px;
+}
+
+.beneficio h3 {
+    color: var(--azul-oscuro);
+    margin-bottom: 12px;
+}
+
+.beneficio p {
+    color: #63748a;
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+/* PIE DE PÁGINA */
+
+.pie {
+    text-align: center;
+    padding: 25px;
+    background-color: var(--azul-oscuro);
+    color: white;
+    font-size: 13px;
+}
+
+/* DISEÑO PARA CELULARES */
+
+@media (max-width: 800px) {
+
+    .encabezado {
+        flex-wrap: wrap;
+    }
+
+    .menu-boton {
+        display: block;
+    }
+
+    .navegacion {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 15px;
+        padding-top: 20px;
+    }
+
+    .navegacion.abierta {
+        display: flex;
+    }
+
+    main {
+        padding: 40px 20px;
+    }
+
+    .principal {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .beneficios {
+        grid-template-columns: 1fr;
+        margin-top: 45px;
+    }
+
+}

@@ -1,0 +1,235 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Inicio | Servicio Técnico y Stock</title>
+
+    <!-- CONEXIÓN CON CSS -->
+    <link rel="stylesheet" href="{% static 'inicio_cliente.css' %}">
+
+    <!-- CONEXIÓN CON JAVASCRIPT -->
+    <script src="{% static 'inicio_cliente.js' %}" defer></script>
+</head>
+
+<body>
+
+    <!-- ================================== -->
+    <!-- ENCABEZADO Y MENÚ DE NAVEGACIÓN -->
+    <!-- ================================== -->
+
+    <header class="encabezado">
+
+        <!-- LOGO -->
+        <a href="{% url 'inicio_cliente' %}" class="marca">
+            <div class="logo">ST</div>
+            <span>Servicio Técnico</span>
+        </a>
+
+        <!-- BOTÓN DE MENÚ PARA CELULARES -->
+        <button
+            type="button"
+            class="menu-boton"
+            id="menu-boton"
+            aria-label="Abrir menú"
+            aria-expanded="false">
+            ☰
+        </button>
+
+        <!-- MENÚ PRINCIPAL -->
+        <nav class="navegacion" id="navegacion">
+
+            <a href="{% url 'inicio_cliente' %}" class="activo">
+                Inicio
+            </a>
+
+            <a href="{% url 'portal_cliente' %}">
+                Rastrear
+            </a>
+
+            <a href="{% url 'catalogo_cliente' %}">
+                Accesorios
+            </a>
+
+        </nav>
+
+    </header>
+
+    <!-- ================================== -->
+    <!-- CONTENIDO PRINCIPAL -->
+    <!-- ================================== -->
+
+    <main>
+
+        <!-- SECCIÓN DE BIENVENIDA -->
+        <section class="principal">
+
+            <!-- TEXTO PRINCIPAL -->
+            <div class="principal-texto">
+
+                <span class="etiqueta">
+                    SERVICIO TÉCNICO PROFESIONAL
+                </span>
+
+                <h1>
+                    Soluciones técnicas
+                    <span>de confianza</span>
+                </h1>
+
+                <p>
+                    Servicio técnico y accesorios de calidad.
+                    Consulta el estado de tu reparación y conoce
+                    nuestros productos disponibles.
+                </p>
+
+                <!-- BOTONES PRINCIPALES -->
+                <div class="botones">
+
+                    <!-- IR A RASTREO -->
+                    <a
+                        href="{% url 'portal_cliente' %}"
+                        class="boton primario">
+                        Rastrear reparación
+                    </a>
+
+                    <!-- IR A CATÁLOGO -->
+                    <a
+                        href="{% url 'catalogo_cliente' %}"
+                        class="boton secundario">
+                        Ver accesorios
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- ================================== -->
+            <!-- CARRUSEL DE INFORMACIÓN -->
+            <!-- ================================== -->
+
+            <div class="principal-imagen">
+
+                <div class="imagen-contenido">
+
+                    <div
+                        class="imagen-icono"
+                        id="imagen-icono">
+                        🔧
+                    </div>
+
+                    <h2 id="imagen-titulo">
+                        Reparación de equipos
+                    </h2>
+
+                    <p id="imagen-descripcion">
+                        Atención y seguimiento de tus reparaciones.
+                    </p>
+
+                </div>
+
+                <!-- INDICADORES DEL CARRUSEL -->
+                <div class="indicadores">
+
+                    <button
+                        type="button"
+                        class="punto activo"
+                        data-slide="0"
+                        aria-label="Diapositiva 1">
+                    </button>
+
+                    <button
+                        type="button"
+                        class="punto"
+                        data-slide="1"
+                        aria-label="Diapositiva 2">
+                    </button>
+
+                    <button
+                        type="button"
+                        class="punto"
+                        data-slide="2"
+                        aria-label="Diapositiva 3">
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================================== -->
+        <!-- TARJETAS DE BENEFICIOS -->
+        <!-- ================================== -->
+
+        <section class="beneficios">
+
+            <!-- TARJETA 1: SEGUIMIENTO -->
+            <article class="beneficio">
+
+                <div class="beneficio-icono">
+                    ◷
+                </div>
+
+                <h3>Seguimiento</h3>
+
+                <p>
+                    Consulta el estado de tu reparación
+                    mediante tu código de rastreo.
+                </p>
+
+            </article>
+
+            <!-- TARJETA 2: CATÁLOGO -->
+            <article class="beneficio">
+
+                <div class="beneficio-icono">
+                    🛒
+                </div>
+
+                <h3>Catálogo</h3>
+
+                <p>
+                    Encuentra accesorios y consulta
+                    su disponibilidad actualizada.
+                </p>
+
+            </article>
+
+            <!-- TARJETA 3: CONFIANZA -->
+            <article class="beneficio">
+
+                <div class="beneficio-icono">
+                    ✓
+                </div>
+
+                <h3>Confianza</h3>
+
+                <p>
+                    Un servicio organizado, transparente
+                    y enfocado en nuestros clientes.
+                </p>
+
+            </article>
+
+        </section>
+
+    </main>
+
+    <!-- ================================== -->
+    <!-- PIE DE PÁGINA -->
+    <!-- ================================== -->
+
+    <footer class="pie">
+
+        <p>
+            Servicio Técnico y Stock |
+            Atención a nuestros clientes
+        </p>
+
+    </footer>
+
+</body>
+</html>
